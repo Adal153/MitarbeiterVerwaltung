@@ -29,7 +29,7 @@ public class Mitarbeiter {
 	
 	@Override
 	public String toString() {
-		return "Mensch [name=" + name + ", alter=" + alter + "]";
+		return "Mitarbeiter: " + name + " Alter: " + alter;
 	}	
 	
 }
