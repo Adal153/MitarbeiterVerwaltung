@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import views.*;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -26,62 +27,62 @@ public class MainWindow extends JPanel {
         }
 
         JTextField mitarbeiterAnzeige = new JTextField(m1.toString());
-        mitarbeiterAnzeige.setSize(new Dimension(160, 30));
-        mitarbeiterAnzeige.setLocation(new Point(10, 100));
+        mitarbeiterAnzeige.setSize(new Dimension(200, 30));
+        mitarbeiterAnzeige.setLocation(new Point(50, 100));
 
         JTextField mitarbeiterAnlageName = new JTextField("Vorname");
         mitarbeiterAnlageName.setSize(new Dimension(80, 30));
-        mitarbeiterAnlageName.setLocation(new Point(210, 100));
+        mitarbeiterAnlageName.setLocation(new Point(370, 100));
 
         JTextField mitarbeiterAnlageAlter = new JTextField("Alter");
         mitarbeiterAnlageAlter.setSize(new Dimension(60, 30));
-        mitarbeiterAnlageAlter.setLocation(new Point(310, 100));
+        mitarbeiterAnlageAlter.setLocation(new Point(470, 100));
 
-        JButton btn = new JButton("Lade Mitarbeiter");
-        btn.setSize(new Dimension(160, 30));
-        btn.setLocation(new Point(10, 160));
+        JButton btnLade = new JButton("Lade Mitarbeiter");
+        btnLade.setSize(new Dimension(200, 30));
+        btnLade.setLocation(new Point(50, 160));
 
-        btn.addActionListener(new ActionListener() {
+        btnLade.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                Mitarbeiter m1 = new Mitarbeiter();
+                Mitarbeiter m2 = new Mitarbeiter();
                 try {
-                    m1 = FileHandler.readJson("Mitarbeiter.json", Mitarbeiter.class);
+                    m2 = FileHandler.readJson("Mitarbeiter.json", Mitarbeiter.class);
                 } catch (Exception e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                JTextField mitarbeiterAnzeige = new JTextField(m1.toString());
-                mitarbeiterAnzeige.setSize(new Dimension(160, 30));
-                mitarbeiterAnzeige.setLocation(new Point(10, 100));
-                add(mitarbeiterAnzeige);
+                
+                mitarbeiterAnzeige.setVisible(false);
+                JTextField mitarbeiterAnzeigeNeu = new JTextField(m2.toString());
+                mitarbeiterAnzeigeNeu.setSize(new Dimension(160, 30));
+                mitarbeiterAnzeigeNeu.setLocation(new Point(10, 100));
+                add(mitarbeiterAnzeigeNeu);
+                System.out.println(m2);
             }
 
         });
 
-        JButton btn1 = new JButton("Setze Mitarbeiter");
-        btn1.setSize(new Dimension(160, 30));
-        btn1.setLocation(new Point(210, 160));
+        JButton btnSetze = new JButton("Setze Mitarbeiter");
+        btnSetze.setSize(new Dimension(160, 30));
+        btnSetze.setLocation(new Point(370, 160));
 
-        btn1.addActionListener(new ActionListener() {
+        btnSetze.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 {
-
                     String a = mitarbeiterAnlageName.getText();
 
                     String b = mitarbeiterAnlageAlter.getText();
 
                     int alter = Integer.parseInt(b);
 
-                    Mitarbeiter m2 = new Mitarbeiter(a, alter);
+                    Mitarbeiter m1 = new Mitarbeiter(a, alter);
 
-                    System.out.println(m2);
-
-
+                    helpers.FileHandler.writeJson("Mitarbeiter.json", m1);
                 }
 
             }
@@ -91,9 +92,11 @@ public class MainWindow extends JPanel {
         super.add(mitarbeiterAnzeige);
         super.add(mitarbeiterAnlageName);
         super.add(mitarbeiterAnlageAlter);
-        super.add(btn);
-        super.add(btn1);
+        super.add(btnLade);
+        super.add(btnSetze);
         super.setVisible(true);
     }
+
+    
 
 }

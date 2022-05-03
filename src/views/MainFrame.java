@@ -1,8 +1,8 @@
 package views;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
+
 
 import views.mainwindow.MainWindow;
 
@@ -10,8 +10,8 @@ import views.mainwindow.MainWindow;
 public class MainFrame extends JFrame {
 
     public MainFrame () {
-        super.setTitle("Mitarbeiter Verwaltung");
-        super.setSize(new Dimension(400, 400)); //Breite & Höhe in Pixel
+        super.setTitle("Mitarbeiterverwaltung Cheech & Chong Ltd.");
+        super.setSize(new Dimension(600, 400)); //Breite & Höhe in Pixel
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         super.setLocationRelativeTo(null); // Fenster startet mittig auf dem Bildschirm
         
